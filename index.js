@@ -1,5 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
+const fs = require("fs");
 
 // TODO: Create an array of questions for user input
 // Lines above and below came with the starting code 
@@ -38,13 +39,13 @@ inquirer
         }
 ])
 .then((data) => {
-    let filename = `${data.userName.toLowerCase().split(' ').join('')}.json`;
+    let filename = `${data.projtitle.toLowerCase().split(' ').join('')}.json`;
 
-    FileSystem.writeFile(filename, JSON.stringify(data, null, '\t'),(err) =>
+    fs.writeFile(filename, JSON.stringify(data, null, '\t'),(err) =>
     err ? console.log(err) : console.log('Success!')
     );
 }).catch((err)=>{
-    iff(err) throw err;
+    if(err) throw err;
     
 }),
 
