@@ -37,6 +37,16 @@ inquirer
             name: 'contributors',
         }
 ])
+.then((data) => {
+    let filename = `${data.userName.toLowerCase().split(' ').join('')}.json`;
+
+    FileSystem.writeFile(filename, JSON.stringify(data, null, '\t'),(err) =>
+    err ? console.log(err) : console.log('Success!')
+    );
+}).catch((err)=>{
+    iff(err) throw err;
+    
+}),
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) { }
