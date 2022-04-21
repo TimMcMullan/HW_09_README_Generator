@@ -5,7 +5,8 @@ const fs = require("fs");
 // TODO: Create an array of questions for user input
 // Lines above and below came with the starting code 
 // const questions = [];
-inquirer
+const promptuser = () => {
+return inquirer
     .prompt([
         {
             type: 'input',
@@ -20,7 +21,7 @@ inquirer
         {
             type: 'input',
             message: 'Please give installation instructions for your project:',
-            name: 'installinstructions',
+            name: 'installationinstructions',
         },
         {
             type: 'input',
@@ -38,28 +39,30 @@ inquirer
             message: 'CONTRIBUTOR-Please list contributors to your project. Separate each contributor with a comma (,):',
             name: 'contributors',
         }
-]);
-const generateMD = ({ installinstructions, usageinfo, license, contributors }) =>
+    ])};
+const generateMD = ({ projtitle, projdescription, installationinstructions, usageinfo, license, contributors }) =>
 
-`#${projectdescription}
+    `# ${projtitle}
+
+## DESCRIPTION: ${projdescription}
 
 ## INSTALLATION INSTRUCTIONS: ${installationinstructions}
 
-## USAGE: ${usafeinfo}
+## USAGE: ${usageinfo}
 
 ## LICENSE :${license}
 
-## CONTRIBUTORS :${contributors}`
+## CONTRIBUTORS :${contributors}`;
 
 
-.then((data) => {
-    const mdPageContent = generateMD(data);
+// .then((data) => {
+//     const mdPageContent = generateMD(data);
 
-        fs.writeFile('README.md', mdPageContent, (err) =>
-            err ? console.log(err):
-            console.log('Markdown file created!')
-            );
-});
+//     fs.writeFile('README.md', mdPageContent, (err) =>
+//         err ? console.log(err) :
+//             console.log('Markdown file created!')
+//     );
+// });
 //     let filename = `${data.projtitle.toLowerCase().split(' ').join('')}.json`;
 
 //     fs.writeFile(filename, JSON.stringify(data, null, '\t'),(err) =>
@@ -67,16 +70,19 @@ const generateMD = ({ installinstructions, usageinfo, license, contributors }) =
 //     );
 // }).catch((err)=>{
 //     if(err) throw err;
-    
+
 // }),
 
 // TODO: Create a function to write README file
 // fs.writeToFile("README.md", data) { }
 
 // TODO: Create a function to initialize app
-const init = () =>{
-    prompt();
- }
+const init = () => {
+    promptuser()
+        .then((answers) => fs.writeFileSync('README.md', generateMD(answers)))
+        .then(() => console.log('Successfully wrote to README.md'))
+        .catch((err) => console.error(err));
+};
 
 // Function call to initialize app
 init();
