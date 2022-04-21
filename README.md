@@ -6,6 +6,8 @@
 
 ## USAGE: d
 
-## LICENSE :GPL 3.0
+## LICENSE :MIT
+
+## LICENSE BADGE :https://img.shields.io/badge/license-MIT-blue.svg
 
 ## CONTRIBUTORS :e
