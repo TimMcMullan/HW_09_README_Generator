@@ -30,7 +30,7 @@ const promptuser = () => {
             {
                 type: 'list',
                 message: 'LICENSE-What kind of license should your project have?',
-                choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3', 'None'],
+                choices: ['MIT', 'APACHE-2.0', 'GPL 3.0', 'BSD 3', 'None'],
                 name: 'licenseType',
             },
             {
@@ -86,7 +86,7 @@ ${renderLicenseSection(licenseType)}
 
 
 ## LICENSE BADGE :
-${renderLicenseBadge(licenseType)}
+![GitHub License}{renderLicenseBadge(licenseType)}
 
 ## LICENSE LINK :
 ${renderLicenseLink(licenseType)}
@@ -111,7 +111,7 @@ const init = () => {
 // returns license badge if it exists, otherwise, nothing
 function renderLicenseBadge(license) {
     if (license != "") {
-        return `![github license](https://img.shields.io/badge/license-${license}-blue.svg)`;
+        return `![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)`;
     } else {
         return "";
     }
@@ -121,8 +121,6 @@ function renderLicenseBadge(license) {
 function renderLicenseLink(license) {
     if (license != "") {
         return `https://img.shield.io/license-${license}-blue.svg`;
-        console.log("link");
-        console.log(link);
     } else {
         return "";
     }
