@@ -40,19 +40,30 @@ const promptuser = () => {
             }
         ])
 };
-const generateMD = ({ projtitle, projdescription, installationinstructions, usageinfo, licenseType, license, contributors }) =>
+
+
+const generateMD = ({ projtitle, projdescription, installationinstructions, licenseType, usageinfo, contributors, }) =>
 
     `# ${projtitle}
 
-## DESCRIPTION: ${projdescription}
+## DESCRIPTION: 
+${projdescription}
 
-## INSTALLATION INSTRUCTIONS: ${installationinstructions}
+## INSTALLATION INSTRUCTIONS:
+${installationinstructions}
 
-## USAGE: ${usageinfo}
+## USAGE: 
+${usageinfo}
 
-## LICENSE :${renderLicenseSection(licenseType)}
+## LICENSE : 
+${renderLicenseSection(licenseType)}
 
-## LICENSE BADGE :${renderLicenseBadge(licenseType)}
+
+## LICENSE BADGE :
+${renderLicenseBadge(licenseType)}
+
+## LICENSE LINK :
+${renderLicenseLink(licenseType)}
 
 ## CONTRIBUTORS :${contributors}`;
 
@@ -81,14 +92,14 @@ const generateMD = ({ projtitle, projdescription, installationinstructions, usag
 // TODO: Create a function to initialize app
 const init = () => {
     promptuser()
-        .then((answers) => fs.writeFileSync('README.md', generateMD(answers)))
+        .then((data) => fs.writeFileSync('README.md', generateMD(data)))
         .then(() => console.log('Successfully wrote to README.md'))
         .catch((err) => console.error(err));
 };
 
 // Function call to initialize app
 
-// var myBadge = renderLicenseBadge(license);
+
 
 
 
@@ -96,36 +107,38 @@ const init = () => {
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
     if (license != "") {
-        var badge = "https://img.shields.io/badge/license-" + license + "-blue.svg";
+        return "https://img.shields.io/badge/license-" + license + "-blue.svg";
     } else {
-        var badge = "";
+        return "";
     }
-    return badge;
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-    if(license != "") {
-        var link = "https://img.shield.io/license-" + license + "-blue.svg";
+    if (license != "") {
+        return "https://img.shield.io/license-" + license + "-blue.svg";
+        console.log("link");
+        console.log(link);
+    } else {
+        return "";
     }
-    console.log(license);
 }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) { 
-    if (license != "") {
-        return license;
+function renderLicenseSection(teddybear) {
+    if (teddybear != "") {
+        return teddybear;
     } else {
         return "";
-    } 
+    }
 }
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-    return `# ${data.title}
+// function generateMarkdown(data) {
+//     return `# ${data.title}
 
-`;
-}
+// `;
+// }
 init();
