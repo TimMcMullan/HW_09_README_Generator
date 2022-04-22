@@ -8,6 +8,7 @@
 5. [License Badge](#license-badge)
 6. [License Link](#license-link)
 7. [Contributors](#contributors)
+8. [Questions and Contact Information](#questions-and-contact-information)
 
 
 ## Description : 
@@ -30,4 +31,9 @@ MIT
 https://img.shield.io/license-MIT-blue.svg
 
 ## Contributors :
-a
+e
+
+## Questions and Contact Information :
+f
+g
+h

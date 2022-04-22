@@ -1,8 +1,8 @@
-// TODO: Include packages needed for this application
+// Needed packages
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-// TODO: Create an array of questions for user input
+// The interview: Gathering information for the README.md
 
 const promptuser = () => {
     return inquirer
@@ -37,27 +37,27 @@ const promptuser = () => {
                 type: 'input',
                 message: 'CONTRIBUTOR-Please list contributors to your project. Separate each contributor with a comma (,):',
                 name: 'contributors',
-            }
+            },
             {
                 type: 'input',
                 message: 'Email Address',
                 name: 'email',
-            }
+            },
             {
                 type: 'input',
                 message: 'Phone Number',
                 name: 'phone',
-            }
+            },
             {
                 type: 'input',
                 message: 'github repository',
                 name: 'repo',
-            }
+            },
         ])
 };
 
-
-const generateMD = ({ projtitle, projdescription, installationinstructions, licenseType, usageinfo, contributors, }) =>
+// function to combine information input and create README.md
+const generateMD = ({ projtitle, projdescription, installationinstructions, licenseType, usageinfo, contributors, email, phone, repo}) =>
 
     `# ${projtitle}
 
@@ -69,6 +69,7 @@ const generateMD = ({ projtitle, projdescription, installationinstructions, lice
 5. [License Badge](#license-badge)
 6. [License Link](#license-link)
 7. [Contributors](#contributors)
+8. [Questions and Contact Information](#questions-and-contact-information)
 
 
 ## Description : 
@@ -93,32 +94,10 @@ ${renderLicenseLink(licenseType)}
 ## Contributors :
 ${contributors}
 
-## Contact Me :
+## Questions and Contact Information :
 ${email}
 ${phone}
 ${repo}`;
-
-
-// .then((data) => {
-//     const mdPageContent = generateMD(data);
-
-//     fs.writeFile('README.md', mdPageContent, (err) =>
-//         err ? console.log(err) :
-//             console.log('Markdown file created!')
-//     );
-// });
-//     let filename = `${data.projtitle.toLowerCase().split(' ').join('')}.json`;
-
-//     fs.writeFile(filename, JSON.stringify(data, null, '\t'),(err) =>
-//     err ? console.log(err) : console.log('Success!')
-//     );
-// }).catch((err)=>{
-//     if(err) throw err;
-
-// }),
-
-// TODO: Create a function to write README file
-// fs.writeToFile("README.md", data) { }
 
 // function to initialize app 
 const init = () => {
@@ -127,11 +106,6 @@ const init = () => {
         .then(() => console.log('Successfully wrote to README.md'))
         .catch((err) => console.error(err));
 };
-
-// Function call to initialize app
-
-
-
 
 
 // returns license badge if it exists, otherwise, nothing
@@ -143,8 +117,7 @@ function renderLicenseBadge(license) {
     }
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// returns license link if it exists, otherwise, nothing
 function renderLicenseLink(license) {
     if (license != "") {
         return `https://img.shield.io/license-${license}-blue.svg`;
@@ -155,8 +128,7 @@ function renderLicenseLink(license) {
     }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// returns license type if it exists, otherwise, nothing
 function renderLicenseSection(teddybear) {
     if (teddybear != "") {
         return teddybear;
@@ -165,10 +137,5 @@ function renderLicenseSection(teddybear) {
     }
 }
 
-// TODO: Create a function to generate markdown for README
-// function generateMarkdown(data) {
-//     return `# ${data.title}
-
-// `;
-// }
+// calls function to initialize application
 init();
