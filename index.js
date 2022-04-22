@@ -38,6 +38,21 @@ const promptuser = () => {
                 message: 'CONTRIBUTOR-Please list contributors to your project. Separate each contributor with a comma (,):',
                 name: 'contributors',
             }
+            {
+                type: 'input',
+                message: 'Email Address',
+                name: 'email',
+            }
+            {
+                type: 'input',
+                message: 'Phone Number',
+                name: 'phone',
+            }
+            {
+                type: 'input',
+                message: 'github repository',
+                name: 'repo',
+            }
         ])
 };
 
@@ -46,13 +61,23 @@ const generateMD = ({ projtitle, projdescription, installationinstructions, lice
 
     `# ${projtitle}
 
-## DESCRIPTION: 
+## Table of Contents
+1. [Description](#description)
+2. [Installation Instructions](#installation-instructions)
+3. [Usage](#usage)
+4. [License](#license)
+5. [License Badge](#license-badge)
+6. [License Link](#license-link)
+7. [Contributors](#contributors)
+
+
+## Description : 
 ${projdescription}
 
-## INSTALLATION INSTRUCTIONS:
+## Installation Instructions :
 ${installationinstructions}
 
-## USAGE: 
+## Usage :
 ${usageinfo}
 
 ## LICENSE : 
@@ -65,7 +90,13 @@ ${renderLicenseBadge(licenseType)}
 ## LICENSE LINK :
 ${renderLicenseLink(licenseType)}
 
-## CONTRIBUTORS :${contributors}`;
+## Contributors :
+${contributors}
+
+## Contact Me :
+${email}
+${phone}
+${repo}`;
 
 
 // .then((data) => {
@@ -89,7 +120,7 @@ ${renderLicenseLink(licenseType)}
 // TODO: Create a function to write README file
 // fs.writeToFile("README.md", data) { }
 
-// TODO: Create a function to initialize app
+// function to initialize app 
 const init = () => {
     promptuser()
         .then((data) => fs.writeFileSync('README.md', generateMD(data)))
@@ -103,11 +134,10 @@ const init = () => {
 
 
 
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+// returns license badge if it exists, otherwise, nothing
 function renderLicenseBadge(license) {
     if (license != "") {
-        return "https://img.shields.io/badge/license-" + license + "-blue.svg";
+        return `![github license](https://img.shields.io/badge/license-${license}-blue.svg)`;
     } else {
         return "";
     }
@@ -117,7 +147,7 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
     if (license != "") {
-        return "https://img.shield.io/license-" + license + "-blue.svg";
+        return `https://img.shield.io/license-${license}-blue.svg`;
         console.log("link");
         console.log(link);
     } else {
